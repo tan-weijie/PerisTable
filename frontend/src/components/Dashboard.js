@@ -1,12 +1,10 @@
 import Navbar from "./Navbar";
 
-const Dashboard = () => { //props or useContext;
+const DashboardPage = () => { //props or useContext;
 
     let data = [{category: "Vegetable", item: "carrots", expiryDate: "22/10/2021", location: "fridge"}]; // comment out later
     return (
         <div>
-            <h1 style={{textAlign: "left"}}>PerisTable</h1>
-            <Navbar/>
             <div style={{textAlign: "left"}}>
                 <p>Total Items:</p>
                 <p>Expired in 5 days:</p>
@@ -38,4 +36,4 @@ const Dashboard = () => { //props or useContext;
     )
 }
 
-export default Dashboard;
+export default DashboardPage;
