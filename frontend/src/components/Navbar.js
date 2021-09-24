@@ -1,11 +1,12 @@
+import {Link, NavLink} from "react-router-dom";
+
 const Navbar = (props) => {
     return (
         <div className='navbar'>
-            <h1>Nav bar</h1>
-                <button onClick="">Home</button>
-                <button onClick="">Add Item</button>
-                <button onClick="">Profile</button>
-                <button onClick="">Sign Out</button>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/add">Add Item</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/home">Log Out</NavLink>
         </div>
     )
 }
