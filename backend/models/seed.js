@@ -2,7 +2,7 @@ module.exports = [
     {
         item: "Carrots",
         category: "Vegetable",
-        qty: 2,
+        quantity: 2,
         purchaseDate: 22/09/2021,
         expiryDate: 30/09/2021,
         location: 'Fridge',
@@ -12,7 +12,7 @@ module.exports = [
     {
         item: "Spinach",
         category: "Vegetable",
-        qty: 2,
+        quantity: 2,
         purchaseDate: 22/09/2021,
         expiryDate: 30/09/2021,
         location: 'Fridge',
@@ -22,7 +22,7 @@ module.exports = [
     {
         item: "Chicken Breast",
         category: "Meat",
-        qty: 1,
+        quantity: 1,
         purchaseDate: 22/09/2021,
         expiryDate: 30/09/2021,
         location: 'Fridge',
@@ -32,7 +32,7 @@ module.exports = [
     {
         item: "Salmon",
         category: "Fish",
-        qty: 1,
+        quantity: 1,
         purchaseDate: 22/09/2021,
         expiryDate: 30/09/2021,
         location: 'Fridge',

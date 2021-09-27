@@ -1,8 +1,32 @@
+import React, {useState, useEffect} from "react";
 import "./DashboardPage.css";
+import axios from 'axios';
 
 const DashboardPage = () => { //props or useContext;
 
-    let data = [{category: "Vegetable", item: "carrots", expiryDate: "22/10/2021", location: "fridge"}]; // comment out later
+    const [data, setData] = useState([]);
+    const uri = "http://localhost:5000/"
+
+
+    useEffect(()=>{
+        getData();
+    },[])
+
+    function getData (){
+        axios.get((uri + "home"))
+        .then(response =>{
+            console.log('received data');
+            setData(response.data);
+            // console.log(response);
+            console.log('data',data);
+        })
+        .catch((error)=> {
+            console.log({status: 'bad', msg: error.message})
+        })
+    }
+
+  
+
     return (
         <div>
             <div style={{textAlign: "left"}}>
