@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useHistory} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -13,7 +13,6 @@ const ShowPage = (props) => {
     useEffect(()=>{
         getOne();
         console.log('useeffect')
-
     },[])
     
     function getOne (){
@@ -29,20 +28,18 @@ const ShowPage = (props) => {
         })
     }
 
-    console.log("THIS",data);
-
-
     function handleDelete (e) {
+        axios.delete((uri + `delete/${id}`))
+        .then(response => {
+            console.log('deleted one item');
+        })
+        .catch((error)=> {
+            console.log({status: 'bad', msg: error.message})
+        })
+    }
 
-        // axios.delete((uri + `delete/${e.target.id}`))
-        // .then(response => {
-        //     console.log('deleted one item');
-        //     // setData(response.data);
-        //     // console.log('data',data);
-        // })
-        // .catch((error)=> {
-        //     console.log({status: 'bad', msg: error.message})
-        // })
+    function handleEdit (e) {
+
     }
 
 
@@ -80,7 +77,7 @@ const ShowPage = (props) => {
                         ${data.price}
                     </tr>
                 </table> 
-                <button>Edit</button>
+                <button onClick={handleEdit}>Edit</button>
                 <button onClick={handleDelete} id={data._id}>Remove</button>
             </form>
         </div>

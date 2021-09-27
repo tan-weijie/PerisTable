@@ -26,6 +26,10 @@ const DashboardPage = () => { //props or useContext;
         })
     }
 
+    function handleEdit (e) {
+        
+    }
+
     function handleDelete (e) {
         axios.delete((uri + `delete/${e.target.id}`))
         .then(response => {
@@ -37,6 +41,8 @@ const DashboardPage = () => { //props or useContext;
             console.log({status: 'bad', msg: error.message})
         })
     }
+
+
 
     return (
         <div>
@@ -63,7 +69,7 @@ const DashboardPage = () => { //props or useContext;
                                     <td>{element.expiryDate}</td>
                                     <td>{element.location}</td>
                                 </Link> 
-                                <td><button id={element._id} onClick>Edit</button></td>
+                                <td><button id={element._id} onClick={handleEdit}>Edit</button></td>
                                 <td><button id={element._id} onClick={handleDelete}>Remove</button></td>
                                 <br/>
                             </tr>

@@ -23,7 +23,7 @@ function App() {
                 <Route path="/add">
                     <AddPage/>
                 </Route>
-                <Route path="/edit">
+                <Route path="/edit/:id">
                     <EditPage/>
                 </Route>
             </main>

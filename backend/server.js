@@ -79,7 +79,7 @@ app.post("/add", async (req, res) => {
 app.put("/edit/:id", async (req, res) => {
     try {
         await itemsModel.updateOne({_id: req.params.id}, req.body); 
-        const data = await itemsModel.find({}); 
+        const data = await itemsModel.findOne({_id: req.params.id}); 
         res.send(data);
         console.log({status: 'ok', msg: 'editted'});
     } catch (error) {
