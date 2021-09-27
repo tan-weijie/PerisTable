@@ -54,11 +54,22 @@ app.get("/seed", async (req, res) => {
     }
 })
 
+app.get('/show/:id', async (req, res) => {
+    console.log('getting one')
+    try {
+        const data = await itemsModel.findOne({_id: req.params.id});
+        res.send(data);
+        console.log({status: 'ok', msg: 'get one'});
+    } catch (error) {
+        console.log({status: 'bad', msg: error.message});
+    }
+})
+
 // CREATE - post
 app.post("/add", async (req, res) => {
     try {
         const data = await itemsModel.create(req.body); 
-        console.log({status: 'ok', msg: 'added'});
+        res.send({status: 'ok', msg: 'added'});
     } catch (error) {
         console.log({status: 'bad', msg: error.message});
     }

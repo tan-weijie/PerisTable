@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {Link} from 'react-router-dom';
 import "./DashboardPage.css";
 import axios from 'axios';
 
@@ -25,7 +26,17 @@ const DashboardPage = () => { //props or useContext;
         })
     }
 
-  
+    function handleDelete (e) {
+        axios.delete((uri + `delete/${e.target.id}`))
+        .then(response => {
+            console.log('deleted one item');
+            setData(response.data);
+            console.log('data',data);
+        })
+        .catch((error)=> {
+            console.log({status: 'bad', msg: error.message})
+        })
+    }
 
     return (
         <div>
@@ -44,15 +55,19 @@ const DashboardPage = () => { //props or useContext;
                 <br/>
                 {data.map(element => {
                     return (
-                        <tr>
-                            <td>{element.category}</td>
-                            <td>{element.item}</td>
-                            <td>{element.expiryDate}</td>
-                            <td>{element.location}</td>
-                            <td><button id={element._id} onClick>Edit</button></td>
-                            <td><button id={element._id} onClick>Remove</button></td>
-                            <br/>
-                        </tr>
+            
+                            <tr id={element._id}>
+                                <Link to={`/show/${element._id}`}>
+                                    <td>{element.category}</td>
+                                    <td>{element.item}</td>
+                                    <td>{element.expiryDate}</td>
+                                    <td>{element.location}</td>
+                                </Link> 
+                                <td><button id={element._id} onClick>Edit</button></td>
+                                <td><button id={element._id} onClick={handleDelete}>Remove</button></td>
+                                <br/>
+                            </tr>
+               
                     )
                 })}
             </table>
