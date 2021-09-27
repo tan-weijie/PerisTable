@@ -68,10 +68,15 @@ const EditPage = () => {
         })
     }
 
+
+
     return (
         <div class="center">
             <form>
                 <table>
+                    <tr>    
+                        <img src="lala"/>
+                    </tr>
                     <tr>    
                         <label>Item Name: </label>
                         <input onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>

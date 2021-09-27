@@ -4,11 +4,12 @@ const cors = require('cors');
 const session = require('express-session');
 const PerisTableDB = require('connect-mongodb-session')(session);
 
+require('dotenv').config()
 const connectDB = require('./models/db');
 const itemsModel = require('./models/item');
 const seed = require('./models/seed');
 
-const mongoSessions = "mongodb+srv://grocerytracker:grocerytracker123@cluster0.h3idv.mongodb.net/sessions?retryWrites=true&w=majority"
+const mongoSessions = process.env.ATLAS_URI;
 connectDB(mongoSessions);
 
 const store = new PerisTableDB({
@@ -45,7 +46,7 @@ app.get("/home", async (req, res) => {
 // READ - get
 app.get("/seed", async (req, res) => {
     try {
-        // await itemsModel.deleteMany({});
+        await itemsModel.deleteMany({});
         const data = await itemsModel.create(seed); 
         res.send(data);
         console.log({status: 'ok', msg: 'seeded'});

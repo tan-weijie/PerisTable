@@ -41,6 +41,9 @@ const ShowPage = (props) => {
         })
     }
 
+    let eDate = new Date(data.expiryDate);
+    let pDate = new Date(data.purchaseDate);
+
     return (
         <div class="center">
             <form>
@@ -60,11 +63,11 @@ const ShowPage = (props) => {
                     </tr>
                     <tr>    
                         <label>Expiry Date: </label>
-                        {data.expiryDate}
+                        {eDate.toLocaleDateString('en-AU')}
                     </tr>
                     <tr>    
                         <label>Purchase Date: </label>
-                        {data.purchaseDate}
+                        {pDate.toLocaleDateString('en-AU')}
                     </tr>
                     <tr>    
                         <label>Location: </label>
