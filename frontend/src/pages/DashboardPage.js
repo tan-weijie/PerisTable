@@ -47,8 +47,8 @@ const DashboardPage = () => { //props or useContext;
     return (
         <div class="center">
             <div style={{textAlign: "left"}}>
-                <p>Total Items:</p>
-                <p>Expired in 5 days:</p>
+                <p>Total Items: {data.length}</p>
+                {/* <p>Expiring in 5 days: </p> */}
             </div>
             <br/>
             <table class="border">
@@ -62,12 +62,23 @@ const DashboardPage = () => { //props or useContext;
                     <th>Remove</th>
                 </tr>
                 {data.map((element, index) => {
+                    let color;
+                    let newDate = new Date;
+                    let eDate = new Date(element.expiryDate);
+                    let difference = newDate - eDate;
+                    difference = difference/1000/60/60/24
+                    console.log(difference);
+                    if (difference > 0){
+                        color = "pink"; 
+                    } else if (difference < 0 && difference > -3) {
+                        color = "yellow"
+                    }
                     return (
                             <tr id={element._id}>
                                     <td>{index + 1}</td>
                                     <td><a href={`/show/${element._id}`}>{element.category}</a></td>
                                     <td><a href={`/show/${element._id}`}>{element.item}</a></td>
-                                    <td><a href={`/show/${element._id}`}>{element.expiryDate}</a></td>
+                                    <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
                                     <td><a href={`/show/${element._id}`}>{element.location}</a></td>
                                 {/* </Link>  */}
                                 <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
