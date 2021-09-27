@@ -2,7 +2,6 @@ import { Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from "./components/Navbar";
-import Dashboard from './components/Dashboard';
 import DashboardPage from "./pages/DashboardPage";
 import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';

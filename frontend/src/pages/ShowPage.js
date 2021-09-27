@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useHistory} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import "./DashboardPage.css";
 
 const ShowPage = (props) => {
+
     const {id} = useParams();
 
     const [data, setData] = useState([]);
@@ -32,19 +34,15 @@ const ShowPage = (props) => {
         axios.delete((uri + `delete/${id}`))
         .then(response => {
             console.log('deleted one item');
+     
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
         })
     }
 
-    function handleEdit (e) {
-
-    }
-
-
     return (
-        <div>
+        <div class="center">
             <form>
                 <table>
                     <img src="lala"/>
@@ -77,8 +75,8 @@ const ShowPage = (props) => {
                         ${data.price}
                     </tr>
                 </table> 
-                <button onClick={handleEdit}>Edit</button>
-                <button onClick={handleDelete} id={data._id}>Remove</button>
+                <a href={`../edit/${data._id}`} id={data._id}>Edit</a>
+                <a onClick={handleDelete} id={data._id}>Remove</a>
             </form>
         </div>
     )

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from 'axios';
+import "./DashboardPage.css";
 
 const AddPage = () => {
     const [item, setItem] = useState();
@@ -43,11 +44,15 @@ const AddPage = () => {
     }
 
     return (
-        <div>
+        <div class="center">
             <form onSubmit={handleSubmit}>
                 <table>
                     <tr>    
-                        <label>Item Name: </label>
+                        <label>Image: </label>
+                        <input type="file" placeholder="Image"/>
+                    </tr>
+                    <tr>    
+                        <label>Item: </label>
                         <input onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
                     </tr>
                     <tr>    
@@ -75,7 +80,7 @@ const AddPage = () => {
                         <input onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
                     </tr>
                 </table> 
-                <button type='submit'>Add Item</button>
+                <a onClick={handleSubmit} href="./home" >Add Item</a>
             </form>
         </div>
     )

@@ -27,7 +27,7 @@ const DashboardPage = () => { //props or useContext;
     }
 
     function handleEdit (e) {
-        
+
     }
 
     function handleDelete (e) {
@@ -45,35 +45,35 @@ const DashboardPage = () => { //props or useContext;
 
 
     return (
-        <div>
+        <div class="center">
             <div style={{textAlign: "left"}}>
                 <p>Total Items:</p>
                 <p>Expired in 5 days:</p>
             </div>
             <br/>
-            <table className="container" border="1">
+            <table class="border">
                 <tr>
+                    <th>#</th>
                     <th>Category</th>
                     <th>Item</th>
                     <th>Expiry Date</th>
                     <th>Location</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
                 </tr>
-                <br/>
-                {data.map(element => {
+                {data.map((element, index) => {
                     return (
-            
                             <tr id={element._id}>
-                                <Link to={`/show/${element._id}`}>
-                                    <td>{element.category}</td>
-                                    <td>{element.item}</td>
-                                    <td>{element.expiryDate}</td>
-                                    <td>{element.location}</td>
-                                </Link> 
-                                <td><button id={element._id} onClick={handleEdit}>Edit</button></td>
-                                <td><button id={element._id} onClick={handleDelete}>Remove</button></td>
+                                    <td>{index + 1}</td>
+                                    <td><a href={`/show/${element._id}`}>{element.category}</a></td>
+                                    <td><a href={`/show/${element._id}`}>{element.item}</a></td>
+                                    <td><a href={`/show/${element._id}`}>{element.expiryDate}</a></td>
+                                    <td><a href={`/show/${element._id}`}>{element.location}</a></td>
+                                {/* </Link>  */}
+                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
+                                <td><a href="/home" id={element._id} onClick={handleDelete}>Remove</a></td>
                                 <br/>
                             </tr>
-               
                     )
                 })}
             </table>

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import "./DashboardPage.css"
 
 const EditPage = () => {
     const [item, setItem] = useState();
@@ -68,7 +69,7 @@ const EditPage = () => {
     }
 
     return (
-        <div>
+        <div class="center">
             <form>
                 <table>
                     <tr>    
@@ -89,7 +90,7 @@ const EditPage = () => {
                     </tr>
                     <tr>    
                         <label>Purchase Date: </label>
-                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder="Purchase Date"/>
+                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder={purchaseDate}/>
                     </tr>
                     <tr>    
                         <label>Location: </label>
