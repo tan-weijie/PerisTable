@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 const AddPage = () => {
+    const [item, setItem] = useState();
+    const [category, setCategory] = useState();
+    const [quantiy, setQuantity] = useState();
+    const [expiryDate, setExpiryDate] = useState();
+    const [purchaseDate, setPurchaseDate] = useState();
+    const [location, setLocation] = useState();
+    const [price, setPrice] = useState();
+
+    
+
     return (
         <div>
             <form>
@@ -34,7 +45,7 @@ const AddPage = () => {
                         <input type="text" placeholder="Price"/>
                     </tr>
                 </table> 
-                <button>Add Item</button>
+                <button type='submit'>Add Item</button>
             </form>
         </div>
     )

@@ -1,3 +1,5 @@
+import "./DashboardPage.css";
+
 const DashboardPage = () => { //props or useContext;
 
     let data = [{category: "Vegetable", item: "carrots", expiryDate: "22/10/2021", location: "fridge"}]; // comment out later
@@ -8,12 +10,12 @@ const DashboardPage = () => { //props or useContext;
                 <p>Expired in 5 days:</p>
             </div>
             <br/>
-            <table>
+            <table className="container" border="1">
                 <tr>
-                    <td>Category</td>
-                    <td>Item</td>
-                    <td>Expiry Date</td>
-                    <td>Location</td>
+                    <th>Category</th>
+                    <th>Item</th>
+                    <th>Expiry Date</th>
+                    <th>Location</th>
                 </tr>
                 <br/>
                 {data.map(element => {
