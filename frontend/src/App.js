@@ -54,6 +54,7 @@ function App() {
                 <hr />
                 <main>
                     <Switch>
+
                         <Route exact path={'/'} component={Home} />
                         <Route exact path={'/login'} component={Login} />
                         <Route exact path={'/signup'} component={Signup} />
@@ -62,15 +63,18 @@ function App() {
                         <DashboardPage/>
                         </Route>
                         <Route path="/show/:id">
+                        <Navbar></Navbar>
                             <ShowPage/>
                         </Route>
                         <Route path="/add">
+                        <Navbar></Navbar>
                             <AddPage/>
                         </Route>
                         <Route path="/edit/:id">
+                        <Navbar></Navbar>
                             <EditPage/>
                         </Route>
-                    </Switch>
+                    </Switch>           
                 </main>
             </BrowserRouter>
         </UserContext.Provider>
