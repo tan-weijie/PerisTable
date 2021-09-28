@@ -67,7 +67,14 @@ const AddPage = () => {
                     </tr>
                     <tr>    
                         <label>Category: </label>
-                        <input onChange={(e)=> setCategory(e.target.value)} value={category} type="select" placeholder="Category"/>
+                        {/* <input onChange={(e)=> setCategory(e.target.value)} value={category} type="select" placeholder="Category"/> */}
+                        <select onChange={(e)=> setCategory(e.target.value)}>
+                            <option value="Fruits">Fruits</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Others">Others</option>
+                        </select>
                     </tr>
                     <tr>    
                         <label>Quantity: </label>
@@ -90,6 +97,7 @@ const AddPage = () => {
                         <input onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
                     </tr>
                 </table> 
+                <br/>
                 <a onClick={handleSubmit} href="./home" >Add Item</a>
             </form>
         </div>

@@ -77,7 +77,8 @@ const ShowPage = (props) => {
                         <label>Price: </label>
                         ${data.price}
                     </tr>
-                </table> 
+                </table>
+                <br/> 
                 <a href={`../edit/${data._id}`} id={data._id}>Edit</a>
                 <a onClick={handleDelete} id={data._id}>Remove</a>
             </form>
