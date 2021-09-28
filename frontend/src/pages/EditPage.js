@@ -78,7 +78,7 @@ const EditPage = () => {
         })
     }
 
-
+    console.log();
 
     return (
         <div class="center">
@@ -101,11 +101,11 @@ const EditPage = () => {
                     </tr>
                     <tr>    
                         <label>Expiry Date: </label>
-                        <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate} type="date" placeholder="Expiry Date"/>
+                        <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate.split('T')[0]} type="date" placeholder="dd-mm-yyyy"/>
                     </tr>
                     <tr>    
                         <label>Purchase Date: </label>
-                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder="Purchase Date"/>
+                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate.split('T')[0]} type="date" placeholder="Purchase Date"/>
                     </tr>
                     <tr>    
                         <label>Location: </label>
