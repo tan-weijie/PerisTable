@@ -54,7 +54,7 @@ app.get("/seed", async (req, res) => {
         console.log({status: 'bad', msg: error.message});
     }
 })
-
+// READ - get one
 app.get('/show/:id', async (req, res) => {
     console.log('getting one')
     try {
