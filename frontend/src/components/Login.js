@@ -34,6 +34,7 @@ function Login(){
             setLoginError(false)
             document.getElementById('login').style.visibility = "hidden";
             window.location.href = "/home"
+            
         })
         .catch(()=> {
             setLoginError(true)

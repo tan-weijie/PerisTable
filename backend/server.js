@@ -106,7 +106,7 @@ app.post('/login',(req,res)=>{
                 (err,token)=>{
                 if (err){
                     console.log(err);
-                    res.send("Invalid Email or Password")
+                    res.send("Invalid Input")
                     return next(err);
                 } else {
                     res.cookie("token",token).json({id:userInfo._id,username:userInfo.username,email:userInfo.email});
