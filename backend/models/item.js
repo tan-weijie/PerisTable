@@ -4,7 +4,7 @@ const itemSchema = new mongoose.Schema(
     {
         item: {type: String, required: true },
         category: {type: String, required: true },
-        qty: {type: Number, required: true },
+        quantity: {type: Number, required: true },
         purchaseDate: {type: Date, required: true},
         expiryDate: { type: Date, required: true },
         location: { type: String, required: true },
