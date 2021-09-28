@@ -1,34 +1,90 @@
+import React, {useState, useEffect} from "react";
+import {Link} from 'react-router-dom';
 import "./DashboardPage.css";
+import axios from 'axios';
 
 const DashboardPage = () => { //props or useContext;
 
-    let data = [{category: "Vegetable", item: "carrots", expiryDate: "22/10/2021", location: "fridge"}]; // comment out later
+    const [data, setData] = useState([]);
+    const uri = "http://localhost:5000/"
+
+
+    useEffect(()=>{
+        getData();
+    },[])
+
+    function getData (){
+        axios.get((uri + "home"))
+        .then(response =>{
+            console.log('received data');
+            setData(response.data);
+            // console.log(response);
+            console.log('data',data);
+        })
+        .catch((error)=> {
+            console.log({status: 'bad', msg: error.message})
+        })
+    }
+
+    function handleEdit (e) {
+
+    }
+
+    function handleDelete (e) {
+        axios.delete((uri + `delete/${e.target.id}`))
+        .then(response => {
+            console.log('deleted one item');
+            setData(response.data);
+            console.log('data',data);
+        })
+        .catch((error)=> {
+            console.log({status: 'bad', msg: error.message})
+        })
+    }
+
+
+
     return (
-        <div>
+        <div class="center">
             <div style={{textAlign: "left"}}>
-                <p>Total Items:</p>
-                <p>Expired in 5 days:</p>
+                <p>Total Items: {data.length}</p>
+                {/* <p>Expiring in 5 days: </p> */}
             </div>
             <br/>
-            <table className="container" border="1">
+            <table class="border">
                 <tr>
+                    <th>#</th>
                     <th>Category</th>
                     <th>Item</th>
                     <th>Expiry Date</th>
                     <th>Location</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
                 </tr>
-                <br/>
-                {data.map(element => {
+                {data.map((element, index) => {
+                    let color;
+                    let newDate = new Date;
+                    let eDate = new Date(element.expiryDate);
+                    let difference = newDate - eDate;
+                    difference = difference/1000/60/60/24
+                    console.log(difference);
+                    if (difference > 0){
+                        color = "pink"; 
+                    } else if (difference < 0 && difference > -3) {
+                        color = "yellow"
+                    }
                     return (
-                        <tr>
-                            <td>{element.category}</td>
-                            <td>{element.item}</td>
-                            <td>{element.expiryDate}</td>
-                            <td>{element.location}</td>
-                            <td><button id={element._id} onClick>Edit</button></td>
-                            <td><button id={element._id} onClick>Remove</button></td>
-                            <br/>
-                        </tr>
+                            <tr id={element._id}>
+                                    <td>{index + 1}</td>
+                                    <td><a href={`/show/${element._id}`}>{element.category}</a></td>
+                                    <td><a href={`/show/${element._id}`}>{element.item}</a></td>
+                                    <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
+                                    <td><a href={`/show/${element._id}`}>{element.location}</a></td>
+                                {/* </Link>  */}
+                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
+                                <td><a href="/home" id={element._id} onClick={handleDelete}>Remove</a></td>
+                                <br/>
+                            </tr>
                     )
                 })}
             </table>
