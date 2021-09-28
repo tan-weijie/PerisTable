@@ -1,10 +1,25 @@
-<<<<<<< HEAD
+
 const express = require('express');
 const User =require ("./models/User.js")
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+
+const session = require('express-session');
+const PerisTableDB = require('connect-mongodb-session')(session);
+
+const itemsModel = require('./models/item');
+const seed = require('./models/seed');
+
+// const mongoSessions = process.env.ATLAS_URI;
+// connectDB(mongoSessions);
+
+// const store = new PerisTableDB({
+//     uri: mongoSessions,
+//     collection: "currentSessions",
+// });
+
 
 const secret = process.env.SECRET;
 console.log("secret",secret)
@@ -109,10 +124,6 @@ app.post('/logout',(req,res)=>{
     res.cookie('token','').send()
 })
 
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-});
 
 
 
@@ -218,40 +229,18 @@ app.listen(PORT, () => {
 // app.listen(PORT, () => {
 //     console.log(`Server started on port ${PORT}`);
 // });
-=======
-const express = require('express');
-const cors = require('cors');
 
-const session = require('express-session');
-const PerisTableDB = require('connect-mongodb-session')(session);
 
-require('dotenv').config()
-const connectDB = require('./models/db');
-const itemsModel = require('./models/item');
-const seed = require('./models/seed');
 
-const mongoSessions = process.env.ATLAS_URI;
-connectDB(mongoSessions);
-
-const store = new PerisTableDB({
-    uri: mongoSessions,
-    collection: "currentSessions",
-});
-
-const app = express();
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-
-app.use(
-    session({
-        secret: "secret",
-        resave: false, 
-        saveUninitialized: false, // no changes, nothing change
-        store: store,
-        maxAge: 7 * 24 * 60 * 60 * 1000 // session to last for 7 day
-    })
-);
+// app.use(
+//     session({
+//         secret: "secret",
+//         resave: false, 
+//         saveUninitialized: false, // no changes, nothing change
+//         store: store,
+//         maxAge: 7 * 24 * 60 * 60 * 1000 // session to last for 7 day
+//     })
+// );
 
 // READ - get
 app.get("/home", async (req, res) => {
@@ -325,4 +314,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
->>>>>>> production
