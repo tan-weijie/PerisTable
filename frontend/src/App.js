@@ -1,10 +1,15 @@
-<<<<<<< HEAD
 import React, {useState,useEffect} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import Home from "./components/Home"
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import UserContext from './components/UserContext'
+import './App.css';
+import Navbar from "./components/Navbar";
+import DashboardPage from "./pages/DashboardPage";
+import AddPage from './pages/AddPage';
+import EditPage from './pages/EditPage';
+import ShowPage from './pages/ShowPage';
 import axios from "axios"
 
 function App() {
@@ -50,9 +55,21 @@ function App() {
                 <main>
                     <Switch>
                         <Route exact path={'/'} component={Home} />
-                        <Route exact path={'/home'} component={Home} />
                         <Route exact path={'/login'} component={Login} />
                         <Route exact path={'/signup'} component={Signup} />
+                        <Route path="/home">
+                        <Navbar></Navbar>
+                        <DashboardPage/>
+                        </Route>
+                        <Route path="/show/:id">
+                            <ShowPage/>
+                        </Route>
+                        <Route path="/add">
+                            <AddPage/>
+                        </Route>
+                        <Route path="/edit/:id">
+                            <EditPage/>
+                        </Route>
                     </Switch>
                 </main>
             </BrowserRouter>
@@ -62,38 +79,3 @@ function App() {
 }
 
 export default App;
-=======
-import { Route } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from "./components/Navbar";
-import DashboardPage from "./pages/DashboardPage";
-import AddPage from './pages/AddPage';
-import EditPage from './pages/EditPage';
-import ShowPage from './pages/ShowPage';
-
-function App() {
-    return (
-        <div className="App">
-            <h1 style={{textAlign: "left"}}>PerisTable</h1>
-            <Navbar></Navbar>
-            <main>
-                <Route path="/home">
-                    <DashboardPage/>
-                </Route>
-                <Route path="/show/:id">
-                    <ShowPage/>
-                </Route>
-                <Route path="/add">
-                    <AddPage/>
-                </Route>
-                <Route path="/edit/:id">
-                    <EditPage/>
-                </Route>
-            </main>
-        </div>
-    );
-}
-
-export default App;
->>>>>>> production
