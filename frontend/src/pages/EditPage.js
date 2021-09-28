@@ -45,7 +45,8 @@ const EditPage = () => {
         })
     }
     
-    function editOne (){
+    function editOne (e){
+        e.preventDefault();
         const data = {
             item,
             category,
@@ -56,12 +57,21 @@ const EditPage = () => {
             price,
             img,
         }
+        if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
+            alert("Please enter all fields")
+        } else if (isNaN(quantity)){
+            console.log(quantity)
+            alert("Quantity should be a number")
+        } else if (isNaN(price)) {
+            alert("Price should be a number")
+        }
         axios.put((uri + `edit/${id}`), data)
         .then(response =>{
             console.log('received editted data');
             console.log(response.data);
             // setData(response.data);
             console.log("THIS",data);
+            window.location = "../home";
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
@@ -95,7 +105,7 @@ const EditPage = () => {
                     </tr>
                     <tr>    
                         <label>Purchase Date: </label>
-                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder={purchaseDate}/>
+                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder="Purchase Date"/>
                     </tr>
                     <tr>    
                         <label>Location: </label>

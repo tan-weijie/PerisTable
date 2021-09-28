@@ -27,6 +27,15 @@ const AddPage = () => {
             price,
             img,
         };
+        if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
+            alert("Please enter all fields")
+        } else if (isNaN(quantity)){
+            console.log(quantity)
+            alert("Quantity should be a number")
+        } else if (isNaN(price)) {
+            alert("Price should be a number")
+        }
+        console.log(typeof(expiryDate))
         axios.post((uri + "add"),data)
         .then(response =>{
             console.log('posted', response);
@@ -37,6 +46,7 @@ const AddPage = () => {
             setPurchaseDate('');
             setLocation('');
             setPrice('');
+            window.location = "../home";
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})

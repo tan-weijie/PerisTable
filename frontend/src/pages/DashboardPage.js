@@ -74,17 +74,16 @@ const DashboardPage = () => { //props or useContext;
                         color = "yellow"
                     }
                     return (
-                            <tr id={element._id}>
-                                    <td>{index + 1}</td>
-                                    <td><a href={`/show/${element._id}`}>{element.category}</a></td>
-                                    <td><a href={`/show/${element._id}`}>{element.item}</a></td>
-                                    <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
-                                    <td><a href={`/show/${element._id}`}>{element.location}</a></td>
-                                {/* </Link>  */}
-                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
-                                <td><a href="/home" id={element._id} onClick={handleDelete}>Remove</a></td>
-                                <br/>
-                            </tr>
+                        <tr id={element._id}>
+                            <td>{index + 1}</td>
+                            <td><a href={`/show/${element._id}`}>{element.category}</a></td>
+                            <td><a href={`/show/${element._id}`}>{element.item}</a></td>
+                            <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
+                            <td><a href={`/show/${element._id}`}>{element.location}</a></td>
+                            <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
+                            <td><a href="/home" id={element._id} onClick={handleDelete}>Remove</a></td>
+                            <br/>
+                        </tr>
                     )
                 })}
             </table>

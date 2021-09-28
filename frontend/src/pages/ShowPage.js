@@ -34,7 +34,7 @@ const ShowPage = (props) => {
         axios.delete((uri + `delete/${id}`))
         .then(response => {
             console.log('deleted one item');
-     
+            window.location = ("../home");
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})

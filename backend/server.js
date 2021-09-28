@@ -46,7 +46,7 @@ app.get("/home", async (req, res) => {
 // READ - get
 app.get("/seed", async (req, res) => {
     try {
-        await itemsModel.deleteMany({});
+        // await itemsModel.deleteMany({});
         const data = await itemsModel.create(seed); 
         res.send(data);
         console.log({status: 'ok', msg: 'seeded'});
