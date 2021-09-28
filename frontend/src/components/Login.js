@@ -32,7 +32,7 @@ function Login(){
             setEmail('');
             setPassword('')
             setLoginError(false)
-            document.getElementById('login').style.visibility = "hidden";
+            //document.getElementById('login').style.visibility = "hidden";
             window.location.href = "/home"
             
         })

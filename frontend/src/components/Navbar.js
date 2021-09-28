@@ -21,7 +21,7 @@ const Navbar = (props) => {
             .then(()=>setEmail(""))
             .then(()=>setUsername(""))
             document.getElementById('logout').style.visibility = "hidden";
-        
+            window.location.href = "/login"
         
     }
     return (
@@ -41,7 +41,7 @@ const Navbar = (props) => {
                         <NavLink class="right" to="/home">{email && (<div>Hi, <b>{username} </b></div>)}</NavLink>
                     </li>
                     <li class="nav-item">
-                        <NavLink class="right" to="/login"><div id="logout" onClick={()=> handleLogout()}>Log out</div></NavLink>
+                        <div id="logout" onClick={()=> handleLogout()} >Log out</div>
                     </li>
                 </ul>
             </div>
