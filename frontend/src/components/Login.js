@@ -19,9 +19,10 @@ function Login(){
         axios.post('http://localhost:5000/login',data,{withCredentials:true})
         .then(response =>{
             console.log('response login',response)
-            if (response.data==='err'){
-                const msg = (<div> Invalid Email or Password</div>)
+            if (response.data==='issue' || response.data==="err"){
+                const msg = (<div> Invalid Login</div>)
                 setMsg(msg)
+                return
             }
             
             
@@ -31,11 +32,12 @@ function Login(){
             setEmail('');
             setPassword('')
             setLoginError(false)
-            //document.getElementById('login').style.visibility = "hidden";
-            //window.location.href = "/home"
+            document.getElementById('login').style.visibility = "hidden";
+            window.location.href = "/home"
         })
         .catch(()=> {
             setLoginError(true)
+            return
         })
     }
  
