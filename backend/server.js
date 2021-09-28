@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 const session = require('express-session');
 const PerisTableDB = require('connect-mongodb-session')(session);
@@ -38,6 +40,8 @@ connectDB(mongoSessions);
 const app = express()
 app.use(express.json({extended:true}))
 app.use (express.urlencoded ({extended: true}))
+app.use(cookieParser())
+app.use (bodyParser.urlencoded ({extended: true}))
 app.use(cors({ 
     credentials:true,
     origin:"http://localhost:3000",
