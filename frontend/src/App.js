@@ -28,36 +28,39 @@ function App() {
         })
     },[])
 
+    const handleHome = () =>{
+        window.location = "./home";
+    }
+    
+
     return (
       <div className="App">
         <hr />
         <UserContext.Provider value={{username, setUsername, email,setEmail}}>
             <BrowserRouter>
-                <span className="header">
-                    <Link to="/"><img src="./logo2.png" width="60px" height="50px" style={{float:"left"}}/></Link>
+                <div className="header">
+                    <img onClick={handleHome} src="./logo2.png" width="60px" height="50px" style={{float:"left"}}/>;
                     <h1>PerisTable</h1> 
-                    <span className="hi-message">
-                    </span>
-                </span>
+                </div>
                 <hr />
                 <main>
                     <Switch>
                         <Route exact path={'/'} component={Home} />
                         <Route exact path={'/login'} component={Login} />
                         <Route exact path={'/signup'} component={Signup} />
-                        <Route path="/home">
+                        <Route exact path="/home">
                         <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                         <DashboardPage username={username}/>
                         </Route>
-                        <Route path="/show/:id">
+                        <Route exact path="/show/:id">
                         <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <ShowPage/>
                         </Route>
-                        <Route path="/add">
+                        <Route exact path="/add">
                         <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <AddPage username={username}/>
                         </Route>
-                        <Route path="/edit/:id">
+                        <Route exact path="/edit/:id">
                         <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <EditPage/>
                         </Route>

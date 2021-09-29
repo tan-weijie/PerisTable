@@ -79,7 +79,7 @@ const ShowPage = (props) => {
                     </tr>
                 </table>
                 <br/> 
-                <a href={`../edit/${data._id}`} id={data._id}>Edit</a>
+                <Link to={`../edit/${data._id}`} id={data._id}>Edit</Link>
                 <a onClick={handleDelete} id={data._id}>Remove</a>
             </form>
         </div>
