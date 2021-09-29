@@ -103,7 +103,7 @@ const EditPage = () => {
     return (
         <div class="center">
             <form>
-            <img src={img}/>
+            {img ? <img src={img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
                 <table>
                     <tr>    
                         <label>Image: </label>
