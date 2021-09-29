@@ -45,18 +45,31 @@ function Login(){
  
     return(
         <div className="mt-4">  
-            <form className="login" id="login" action="" onSubmit={e=>handleLogin(e)}>
-                {loginError && (
-                    <div>Invalid Login </div>
-                )}
-                {msg}
-                <input className="input user" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/><br />
-                <input className="input" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/><br />
-                <input className="input" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
-                <button className="button" style={{display:"block"}} type="submit">Log in</button>
-                <br/>
-                <p style={{marginLeft:"20px"}}>Sign up now</p>
-                <div className="signuplink"><Link to={'/signup'} style={{textDecoration:"none"}}>Create New Account</Link></div>
+            <form id="login" action="" onSubmit={e=>handleLogin(e)}>
+                <div className="mb-3">
+                    {loginError && (
+                        <div>Invalid Login </div>
+                    )}
+                    {msg}
+                    <div className="form-floating mb-2">
+                        <input className="form-control w-50" id="floatingName" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/>
+                        <label for="floatingName">Username</label>
+                    </div>
+                    <div className="form-floating mb-2">
+                        <input className="form-control w-50" id="floatingEmail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+                        <label for="floatingEmail">Email Address</label>
+                    </div>
+                    <div className="form-floating mb-4">
+                        <input className="form-control w-50" id="floatingPassword" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div className="form-floating mb-4">
+                        <button className="btn btn-dark text-white" type="submit">Log in</button>
+                    </div>
+                    <div className="signuplink">
+                        <Link to={'/signup'} className="text-primary">Create New Account</Link>
+                    </div>
+                </div>
             </form>
         </div>
     )
