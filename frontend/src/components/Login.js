@@ -2,7 +2,9 @@ import {useState, useContext} from "react";
 import axios from 'axios';
 import UserContext from './UserContext'
 import {Link} from "react-router-dom"
-import styles from "./styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+// import styles from "./styles.css";
 
 function Login(){
     const [username, setUsername] = useState("")
@@ -24,8 +26,7 @@ function Login(){
                 setMsg(msg)
                 return
             }
-            
-            
+             
             user.setEmail(response.data.email)
             user.setUsername(response.data.username)
             setUsername('')
@@ -43,10 +44,7 @@ function Login(){
     }
  
     return(
-        <div>
-            <br />
-            <br />
-            <img src="./main.gif" width="560px" height="520px" className="main-img"/>
+        <div className="mt-4">  
             <form className="login" id="login" action="" onSubmit={e=>handleLogin(e)}>
                 {loginError && (
                     <div>Invalid Login </div>
@@ -57,7 +55,6 @@ function Login(){
                 <input className="input" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
                 <button className="button" style={{display:"block"}} type="submit">Log in</button>
                 <br/>
-                <hr />
                 <p style={{marginLeft:"20px"}}>Sign up now</p>
                 <div className="signuplink"><Link to={'/signup'} style={{textDecoration:"none"}}>Create New Account</Link></div>
             </form>

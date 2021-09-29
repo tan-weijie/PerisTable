@@ -80,9 +80,8 @@ const DashboardPage = () => { //props or useContext;
                                     <td><a href={`/show/${element._id}`}>{element.item}</a></td>
                                     <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
                                     <td><a href={`/show/${element._id}`}>{element.location}</a></td>
-                                {/* </Link>  */}
-                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}><i className="bi bi-pencil-square text-dark"></i></a></td>
-                                <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
+                                    <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}><i className="bi bi-pencil-square text-dark"></i></a></td>
+                                    <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
                                 <br/>
                             </tr>
                     )
