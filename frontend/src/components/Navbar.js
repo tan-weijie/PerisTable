@@ -1,27 +1,33 @@
-import {Link, NavLink} from "react-router-dom";
-import "./Navbar.css"
+import {Link } from "react-router-dom";
 
 const Navbar = (props) => {
     return (
-        <div class="navbar">
-            <ul class="nav">
-                <li class="nav-item">
-                    <NavLink class="left" to="/home">Home</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="left" to="/add">Add Item</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="left" to="/shoppinglist">Shopping List</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="right" to="/profile">Profile</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="right" to="/">Log Out</NavLink>    
-                </li>
-            </ul>
-        </div>
+        <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
+            <div className="container-fluid">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/home">Home</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/add">Add Item</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/shoppinglist">Shopping List</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/profile">Profile</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link mx" to="/">Log Out</Link>    
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     )
 }
 

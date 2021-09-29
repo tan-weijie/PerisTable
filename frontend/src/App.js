@@ -1,5 +1,7 @@
 import React, {useState,useEffect} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home"
 import Signup from "./components/Signup";
 import Login from "./components/Login";
@@ -10,7 +12,8 @@ import DashboardPage from "./pages/DashboardPage";
 import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
-import axios from "axios"
+import axios from "axios";
+
 
 function App() {
  
@@ -59,7 +62,7 @@ function App() {
                         <Route exact path={'/login'} component={Login} />
                         <Route exact path={'/signup'} component={Signup} />
                         <Route path="/home">
-                        <Navbar></Navbar>
+                        <Navbar />
                         <DashboardPage/>
                         </Route>
                         <Route path="/show/:id">
