@@ -19,9 +19,10 @@ function Login(){
         axios.post('http://localhost:5000/login',data,{withCredentials:true})
         .then(response =>{
             console.log('response login',response)
-            if (response.data==='err'){
-                const msg = (<div> Invalid Email or Password</div>)
+            if (response.data==='issue' || response.data==="err"){
+                const msg = (<div> Invalid Login</div>)
                 setMsg(msg)
+                return
             }
             
             
@@ -32,9 +33,12 @@ function Login(){
             setPassword('')
             setLoginError(false)
             //document.getElementById('login').style.visibility = "hidden";
+            window.location.href = "/home"
+            
         })
         .catch(()=> {
             setLoginError(true)
+            return
         })
     }
  
@@ -45,7 +49,7 @@ function Login(){
             <img src="./main.gif" width="560px" height="520px" className="main-img"/>
             <form className="login" id="login" action="" onSubmit={e=>handleLogin(e)}>
                 {loginError && (
-                    <div>Invalid Email or Password </div>
+                    <div>Invalid Login </div>
                 )}
                 {msg}
                 <input className="input user" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/><br />

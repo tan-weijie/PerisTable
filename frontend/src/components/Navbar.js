@@ -1,7 +1,31 @@
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./Navbar.css"
+import UserContext from './UserContext';
+import { useState, useEffect } from "react"
+import axios from 'axios'
 
 const Navbar = (props) => {
+    const [username,setUsername] = useState("")
+    const [email, setEmail] = useState("")
+
+    useEffect(()=>{
+        axios.get("http://localhost:5000/user", {withCredentials:true})
+        .then(response =>{
+            setUsername(response.data.username)
+            setEmail(response.data.email)    
+        })
+    },[])
+
+    function handleLogout(){
+        axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
+            .then(()=>setEmail(""))
+            .then(()=>setUsername(""))
+            document.getElementById('logout').style.visibility = "hidden";
+            window.location.href = "/login"
+        
+    }
     return (
+        <UserContext.Provider value={{username, setUsername, email,setEmail}}>
         <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
             <div className="container-fluid">
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,15 +43,16 @@ const Navbar = (props) => {
                             <Link className="nav-link" to="/shoppinglist">Shopping List</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/profile">Profile</Link>
+                            <Link className="nav-link" to="/home">{email && (<div>Hi, <b>{username} </b></div>)}</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link mx" to="/">Log Out</Link>    
+                            <div className="nav-link mx" id="logout" onClick={()=> handleLogout()} >Log out</div> 
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        </UserContext.Provider>
     )
 }
 
