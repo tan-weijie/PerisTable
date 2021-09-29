@@ -10,10 +10,30 @@ const AddPage = (props) => {
     const [purchaseDate, setPurchaseDate] = useState('');
     const [location, setLocation] = useState();
     const [price, setPrice] = useState();
-    const [img, setImg] = useState('lala');
+    const [img, setImg] = useState('No Image');
     const username = props.username;
 
     const uri = "http://localhost:5000/"
+
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        console.log(base64);
+        setImg(base64);
+    };
 
     function handleSubmit(e){
         e.preventDefault();
@@ -47,6 +67,7 @@ const AddPage = (props) => {
             setPurchaseDate('');
             setLocation('');
             setPrice('');
+            setImg('No Image')
             window.location = "../home";
         })
         .catch((error)=> {
@@ -57,10 +78,11 @@ const AddPage = (props) => {
     return (
         <div class="center">
             <form onSubmit={handleSubmit}>
+                <img src={img}/>
                 <table>
                     <tr>    
                         <label>Image: </label>
-                        <input type="file" placeholder="Image"/>
+                        <input onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                     </tr>
                     <tr>    
                         <label>Item: </label>
