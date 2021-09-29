@@ -26,13 +26,6 @@ function App() {
         })
     },[])
 
-    function handleLogout(){
-        axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
-            .then(()=>setEmail(""))
-            .then(()=>setUsername(""))
-        const login = (<Link to={"/login"}>Log in</Link>)
-        setLogin(login)
-    }
     return (
       <div className="App">
         <hr />
@@ -42,13 +35,6 @@ function App() {
                     <Link to="/"><img src="./logo2.png" width="60px" height="50px" style={{float:"left"}}/></Link>
                     <h1>PerisTable</h1> 
                     <span className="hi-message">
-                        {email && (
-                            <div>Hi <b>{username} </b>,
-                                <div>{email}</div>
-                                <button onClick={()=> handleLogout()}>Log out</button>
-                            </div>
-                        )}
-                        <div>{login}</div>
                     </span>
                 </span>
                 <hr />

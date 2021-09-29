@@ -20,12 +20,12 @@ function Register(){
             setUsername('')
             setEmail('');
             setPassword('')
+            window.location.href = "/home"
         })
     }
 
     return(
         <div>
-        <div><Link to={'./'}>Home</Link></div>
             <h2>Create New Account </h2>
             <form className="signup" action="" onSubmit={e=>{handleRegister(e)}}>
                 <input className="input" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/><br/>

@@ -1,10 +1,11 @@
-
 const express = require('express');
 const User =require ("./models/User.js")
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 const session = require('express-session');
 const PerisTableDB = require('connect-mongodb-session')(session);
@@ -38,6 +39,8 @@ connectDB(mongoSessions);
 const app = express()
 app.use(express.json({extended:true}))
 app.use (express.urlencoded ({extended: true}))
+app.use(cookieParser())
+//app.use (bodyParser.urlencoded ({extended: true}))
 app.use(cors({ 
     credentials:true,
     origin:"http://localhost:3000",
@@ -102,7 +105,7 @@ app.post('/login',(req,res)=>{
                 (err,token)=>{
                 if (err){
                     console.log(err);
-                    res.send("Invalid Email or Password")
+                    res.send("Invalid Input")
                     return next(err);
                 } else {
                     res.cookie("token",token).json({id:userInfo._id,username:userInfo.username,email:userInfo.email});
@@ -256,7 +259,7 @@ app.get("/home", async (req, res) => {
 // READ - get
 app.get("/seed", async (req, res) => {
     try {
-        // await itemsModel.deleteMany({});
+        await itemsModel.deleteMany({});
         const data = await itemsModel.create(seed); 
         res.send(data);
         console.log({status: 'ok', msg: 'seeded'});
