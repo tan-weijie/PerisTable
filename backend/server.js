@@ -246,9 +246,9 @@ app.post('/logout',(req,res)=>{
 // );
 
 // READ - get
-app.get("/home", async (req, res) => {
+app.get("/home/:username", async (req, res) => {
     try {
-        const data = await itemsModel.find({}); 
+        const data = await itemsModel.find({username: req.params.username}); 
         res.send(data);
         console.log({status: 'ok', msg: 'get'});
     } catch (error) {

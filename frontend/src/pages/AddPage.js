@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from 'axios';
 import "./DashboardPage.css";
 
-const AddPage = () => {
+const AddPage = (props) => {
     const [item, setItem] = useState();
-    const [category, setCategory] = useState();
+    const [category, setCategory] = useState("Fruits");
     const [quantity, setQuantity] = useState();
     const [expiryDate, setExpiryDate] = useState('');
     const [purchaseDate, setPurchaseDate] = useState('');
     const [location, setLocation] = useState();
     const [price, setPrice] = useState();
     const [img, setImg] = useState('lala');
+    const username = props.username;
 
     const uri = "http://localhost:5000/"
 
@@ -26,6 +26,7 @@ const AddPage = () => {
             location,
             price,
             img,
+            username,
         };
         if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
             alert("Please enter all fields")
