@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useHistory} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import "./DashboardPage.css";
+// import "./DashboardPage.css";
 
 const ShowPage = (props) => {
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from 'react-router-dom';
-import "./DashboardPage.css";
+// import "./DashboardPage.css";
 import axios from 'axios';
 
 const DashboardPage = () => { //props or useContext;
@@ -51,7 +51,7 @@ const DashboardPage = () => { //props or useContext;
                 {/* <p>Expiring in 5 days: </p> */}
             </div>
             <br/>
-            <table class="border">
+            <table className="table table-bordered">
                 <tr>
                     <th>#</th>
                     <th>Category</th>
@@ -81,8 +81,8 @@ const DashboardPage = () => { //props or useContext;
                                     <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
                                     <td><a href={`/show/${element._id}`}>{element.location}</a></td>
                                 {/* </Link>  */}
-                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}>Edit</a></td>
-                                <td><a href="/home" id={element._id} onClick={handleDelete}>Remove</a></td>
+                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}><i className="bi bi-pencil-square text-dark"></i></a></td>
+                                <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
                                 <br/>
                             </tr>
                     )
