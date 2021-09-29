@@ -6,13 +6,11 @@ import Home from "./components/Home"
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import UserContext from './components/UserContext'
-// import './App.css';
 import Navbar from "./components/Navbar";
 import DashboardPage from "./pages/DashboardPage";
 import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
-import Header from './components/Header';
 import axios from "axios"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -37,7 +35,7 @@ function App() {
 
     return (
       <div className="mt-4">
-      <div className="container-fluid" >
+      <div className="container" >
       
         <UserContext.Provider value={{username, setUsername, email,setEmail}}>
             <BrowserRouter>
