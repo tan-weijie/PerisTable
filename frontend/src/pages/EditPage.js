@@ -123,7 +123,7 @@ const EditPage = () => {
                     </tr>
                 </table> 
                 <br/>
-                <a onClick={handleEdit}>Edit</a>
+                <a onClick={handleEdit}>Submit</a>
             </form>
         </div>
     )
