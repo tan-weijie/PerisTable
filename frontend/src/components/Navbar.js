@@ -29,7 +29,7 @@ const Navbar = (props) => {
                             <Link className="nav-link text-white" to="/add">Add Item</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/shoppinglist">Shopping List</Link>
+                            <a className="nav-link">Shopping List</a>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link text-white" to="/home">{email && (<div>Hi, <b>{username} </b></div>)}</Link>

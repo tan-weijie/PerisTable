@@ -76,51 +76,49 @@ const AddPage = (props) => {
     }
 
     return (
-        <div class="center">
+        <div className="center mt-4">
             <form onSubmit={handleSubmit}>
                 {img ? <img src={img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
-                <table>
-                    <tr>    
-                        <label>Image: </label>
-                        <input onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
-                    </tr>
-                    <tr>    
-                        <label>Item: </label>
-                        <input onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
-                    </tr>
-                    <tr>    
-                        <label>Category: </label>
-                        <select onChange={(e)=> setCategory(e.target.value)}>
+                    <div className="finput-group mt-4 mb-7">    
+                        <input className="form-control" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
+                    </div>
+                    <div className="form-floating mt-2 mb-2">    
+                        <input className="form-control w-70" id="inputItem" onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
+                        <label for="inputItem">Item Name</label>
+                    </div>
+                    <div className="form-floating mt-2 mb-2">    
+                        <select className="form-select" id="floatingSelect" onChange={(e)=> setCategory(e.target.value)}>
+                            <option selected>Choose a category</option>
                             <option value="Fruits">Fruits</option>
                             <option value="Vegetables">Vegetables</option>
                             <option value="Meat">Meat</option>
                             <option value="Dairy">Dairy</option>
                             <option value="Others">Others</option>
                         </select>
-                    </tr>
-                    <tr>    
-                        <label>Quantity: </label>
-                        <input onChange={(e)=> setQuantity(e.target.value)} value={quantity} type="text" placeholder="Quantity"/>
-                    </tr>
-                    <tr>    
+                        <label for="floatingSelect">Category</label>
+                    </div>
+                    <div className="form-floating mt-2 mb-2">    
+                        <input className="form-control w-70" id="inputQty" onChange={(e)=> setQuantity(e.target.value)} value={quantity} type="text" placeholder="Quantity"/>
+                        <label for="inputQty">Quantity</label>
+                    </div>
+                    <div>    
                         <label>Expiry Date: </label>
                         <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate} type="date" placeholder="Expiry Date"/>
-                    </tr>
-                    <tr>    
+                    </div>
+                    <div>    
                         <label>Purchase Date: </label>
                         <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder="Purchase Date"/>
-                    </tr>
-                    <tr>    
+                    </div>
+                    <div>    
                         <label>Location: </label>
                         <input onChange={(e)=> setLocation(e.target.value)} value={location} type="text" placeholder="Location"/>
-                    </tr>
-                    <tr>    
+                    </div>
+                    <div>    
                         <label>Price: </label>
                         <input onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
-                    </tr>
-                </table> 
+                    </div>
                 <br/>
-                <a onClick={handleSubmit} href="./home" >Add Item</a>
+                <button onClick={handleSubmit} href="./home" >Add Item</button>
             </form>
         </div>
     )

@@ -12,6 +12,7 @@ import DashboardPage from "./pages/DashboardPage";
 import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
+import Header from './components/Header';
 import axios from "axios"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -30,32 +31,43 @@ function App() {
         })
     },[])
 
+    const handleHome = () => {
+        window.location = "./home";
+    }
+
     return (
       <div className="mt-4">
       <div className="container-fluid" >
       
         <UserContext.Provider value={{username, setUsername, email,setEmail}}>
             <BrowserRouter>
-                <h1><Link to="/"><img src="./groceries.png" width="60px" height="50px" className="me-3"/></Link>PerisTable</h1> 
+                <div className="d-flex flex-row mb-3">
+                    <img onClick={handleHome} src="./groceries.png" width="60px" height="50px" className="me-3"/>
+                    <h1>PerisTable</h1>        
+                </div>
                 <main>
                     <Switch>
-                        <Route exact path={'/'} component={Home} />
+                        <Route exact path={'/'}>
+                            <Home />
+                        </Route>
                         <Route exact path={'/login'} component={Login} />          
-                        <Route exact path={'/signup'} component={Signup} />
+                        <Route exact path={'/signup'}>
+                            <Signup />
+                        </Route>
                         <Route path="/home">
-                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
-                        <DashboardPage username={username}/>
+                            <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                            <DashboardPage username={username}/>
                         </Route>
                         <Route path="/show/:id">
-                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                            <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <ShowPage/>
                         </Route>
                         <Route path="/add">
-                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                            <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <AddPage username={username}/>
                         </Route>
                         <Route path="/edit/:id">
-                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                            <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <EditPage/>
                         </Route>
                     </Switch>           
