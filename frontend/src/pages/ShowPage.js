@@ -48,7 +48,7 @@ const ShowPage = (props) => {
         <div class="center">
             <form>
                 <table>
-                    <img src={data.img}/>
+                    {data.img ? <img src={data.img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
                     <tr>    
                         <label>Item Name: </label>
                         {data.item}

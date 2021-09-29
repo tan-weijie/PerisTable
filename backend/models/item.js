@@ -9,7 +9,7 @@ const itemSchema = new mongoose.Schema(
         expiryDate: { type: Date, required: true },
         location: { type: String, required: true },
         price: {type: Number, required: true},
-        img: {type: String, data: Buffer, required: true},
+        img: {type: String, data: Buffer},
         username: {type: String, required: true},
     }, 
     {   
