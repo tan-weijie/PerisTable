@@ -71,12 +71,11 @@ const DashboardPage = (props) => { //props or useContext;
                     return (
                         <tr id={element._id}>
                                 <td>{index + 1}</td>
-                                <td><a href={`/show/${element._id}`}>{element.category}</a></td>
-                                <td><a href={`/show/${element._id}`}>{element.item}</a></td>
-                                <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
-                                <td><a href={`/show/${element._id}`}>{element.location}</a></td>
-                            {/* </Link>  */}
-                            <td><a href={`/edit/${element._id}`}id={element._id}><i className="bi bi-pencil-square text-dark"></i></a></td>
+                                <td><Link to={`/show/${element._id}`}>{element.category}</Link></td>
+                                <td><Link to={`/show/${element._id}`}>{element.item}</Link></td>
+                                <td style={{backgroundColor: color}}><Link to={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</Link></td>
+                                <td><Link to={`/show/${element._id}`}>{element.location}</Link></td>
+                            <td><Link to={`/edit/${element._id}`}><i className="bi bi-pencil-square text-dark" id={element._id}></i></Link></td>
                             <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
                             <br/>
                         </tr>
