@@ -3,18 +3,19 @@ import {Link} from 'react-router-dom';
 // import "./DashboardPage.css";
 import axios from 'axios';
 
-const DashboardPage = () => { //props or useContext;
+const DashboardPage = (props) => { //props or useContext;
 
     const [data, setData] = useState([]);
     const uri = "http://localhost:5000/"
 
-
     useEffect(()=>{
         getData();
-    },[])
-
+    },[props])
+    
     function getData (){
-        axios.get((uri + "home"))
+   
+        // console.log('THIS',username);
+        axios.get((uri + `home/${props.username}`))
         .then(response =>{
             console.log('received data');
             setData(response.data);
@@ -25,11 +26,7 @@ const DashboardPage = () => { //props or useContext;
             console.log({status: 'bad', msg: error.message})
         })
     }
-
-    function handleEdit (e) {
-
-    }
-
+    
     function handleDelete (e) {
         axios.delete((uri + `delete/${e.target.id}`))
         .then(response => {
@@ -41,8 +38,6 @@ const DashboardPage = () => { //props or useContext;
             console.log({status: 'bad', msg: error.message})
         })
     }
-
-
 
     return (
         <div class="center">
@@ -74,17 +69,17 @@ const DashboardPage = () => { //props or useContext;
                         color = "yellow"
                     }
                     return (
-                            <tr id={element._id}>
-                                    <td>{index + 1}</td>
-                                    <td><a href={`/show/${element._id}`}>{element.category}</a></td>
-                                    <td><a href={`/show/${element._id}`}>{element.item}</a></td>
-                                    <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
-                                    <td><a href={`/show/${element._id}`}>{element.location}</a></td>
-                                {/* </Link>  */}
-                                <td><a href={`/edit/${element._id}`}id={element._id} onClick={handleEdit}><i className="bi bi-pencil-square text-dark"></i></a></td>
-                                <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
-                                <br/>
-                            </tr>
+                        <tr id={element._id}>
+                                <td>{index + 1}</td>
+                                <td><a href={`/show/${element._id}`}>{element.category}</a></td>
+                                <td><a href={`/show/${element._id}`}>{element.item}</a></td>
+                                <td style={{backgroundColor: color}}><a href={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</a></td>
+                                <td><a href={`/show/${element._id}`}>{element.location}</a></td>
+                            {/* </Link>  */}
+                            <td><a href={`/edit/${element._id}`}id={element._id}><i className="bi bi-pencil-square text-dark"></i></a></td>
+                            <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
+                            <br/>
+                        </tr>
                     )
                 })}
             </table>

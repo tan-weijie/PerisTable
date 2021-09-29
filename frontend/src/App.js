@@ -11,6 +11,8 @@ import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
 import axios from "axios"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
  
@@ -40,24 +42,23 @@ function App() {
                 <hr />
                 <main>
                     <Switch>
-
                         <Route exact path={'/'} component={Home} />
                         <Route exact path={'/login'} component={Login} />
                         <Route exact path={'/signup'} component={Signup} />
                         <Route path="/home">
-                        <Navbar></Navbar>
-                        <DashboardPage/>
+                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                        <DashboardPage username={username}/>
                         </Route>
                         <Route path="/show/:id">
-                        <Navbar></Navbar>
+                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <ShowPage/>
                         </Route>
                         <Route path="/add">
-                        <Navbar></Navbar>
-                            <AddPage/>
+                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
+                            <AddPage username={username}/>
                         </Route>
                         <Route path="/edit/:id">
-                        <Navbar></Navbar>
+                        <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <EditPage/>
                         </Route>
                     </Switch>           
