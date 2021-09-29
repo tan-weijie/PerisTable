@@ -48,7 +48,7 @@ const ShowPage = (props) => {
         <div class="center">
             <form>
                 <table>
-                    <img src="lala"/>
+                    <img src={data.img}/>
                     <tr>    
                         <label>Item Name: </label>
                         {data.item}

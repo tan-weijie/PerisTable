@@ -37,8 +37,8 @@ connectDB(mongoSessions);
 // });
 
 const app = express()
-app.use(express.json({extended:true}))
-app.use (express.urlencoded ({extended: true}))
+app.use(express.json({limit: "30mb", extended:true}))
+app.use (express.urlencoded ({limit: "30mb", extended: true}))
 app.use(cookieParser())
 //app.use (bodyParser.urlencoded ({extended: true}))
 app.use(cors({ 
@@ -246,9 +246,9 @@ app.post('/logout',(req,res)=>{
 // );
 
 // READ - get
-app.get("/home", async (req, res) => {
+app.get("/home/:username", async (req, res) => {
     try {
-        const data = await itemsModel.find({}); 
+        const data = await itemsModel.find({username: req.params.username}); 
         res.send(data);
         console.log({status: 'ok', msg: 'get'});
     } catch (error) {

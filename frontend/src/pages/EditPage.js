@@ -20,6 +20,25 @@ const EditPage = () => {
 
     console.log(id);
 
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        console.log(base64);
+        setImg(base64);
+    };
 
     useEffect(()=>{
         getOne();
@@ -38,6 +57,7 @@ const EditPage = () => {
             setPurchaseDate(response.data.purchaseDate);
             setLocation(response.data.location);
             setPrice(response.data.price);
+            setImg(response.data.img);
             console.log("THIS",data);
         })
         .catch((error)=> {
@@ -83,9 +103,11 @@ const EditPage = () => {
     return (
         <div class="center">
             <form>
+            <img src={img}/>
                 <table>
                     <tr>    
-                        <img src="lala"/>
+                        <label>Image: </label>
+                        <input onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                     </tr>
                     <tr>    
                         <label>Item: </label>
@@ -123,7 +145,7 @@ const EditPage = () => {
                     </tr>
                 </table> 
                 <br/>
-                <a onClick={handleEdit}>Edit</a>
+                <a onClick={handleEdit}>Submit</a>
             </form>
         </div>
     )

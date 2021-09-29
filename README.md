@@ -1,2 +1,0 @@
-# PerisTable
-First MERN app

@@ -5,18 +5,12 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 
 const Navbar = (props) => {
-    const [username,setUsername] = useState("")
-    const [email, setEmail] = useState("")
+    const email = props.email;
+    const username = props.username;
+    const setEmail = props.setEmail;
+    const setUsername = props.setUsername;
 
-    useEffect(()=>{
-        axios.get("http://localhost:5000/user", {withCredentials:true})
-        .then(response =>{
-            setUsername(response.data.username)
-            setEmail(response.data.email)    
-        })
-    },[])
-
-    function handleLogout(){
+    function handleLogout(e){
         axios.post('http://localhost:5000/logout',{}, {withCredentials:true})
             .then(()=>setEmail(""))
             .then(()=>setUsername(""))
@@ -25,8 +19,7 @@ const Navbar = (props) => {
         
     }
     return (
-        <UserContext.Provider value={{username, setUsername, email,setEmail}}>
-        <nav className="navbar navbar-dark text-white bg-dark navbar-expand-sm">
+        <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
             <div className="container-fluid">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item " >
@@ -47,7 +40,6 @@ const Navbar = (props) => {
                     </ul>
             </div>
         </nav>
-        </UserContext.Provider>
     )
 }
 

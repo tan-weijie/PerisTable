@@ -7,7 +7,8 @@ module.exports = [
         expiryDate: new Date("2021-09-30"),
         location: 'Fridge',
         price: 1.20,
-        img: "lala"
+        img: "lala",
+        username: "test",
     },
     {
         item: "Spinach",
@@ -17,7 +18,8 @@ module.exports = [
         expiryDate: new Date("2021-09-27"),
         location: 'Fridge',
         price: 1.20,
-        img: "lala"
+        img: "lala",
+        username: "test",
     },
     {
         item: "Chicken Breast",
@@ -27,7 +29,8 @@ module.exports = [
         expiryDate: new Date("2021-10-30"),
         location: 'Fridge',
         price: 6.50,
-        img: "lala"
+        img: "lala",
+        username: "test",
     },
     {
         item: "Salmon",
@@ -37,7 +40,8 @@ module.exports = [
         expiryDate: new Date("2021-10-15"),
         location: 'Fridge',
         price: 16.50,
-        img: "lala"
+        img: "lala",
+        username: "test",
     },
     {
         item: "Beef",
@@ -47,6 +51,7 @@ module.exports = [
         expiryDate: new Date("2021-10-12"),
         location: 'Fridge',
         price: 20.50,
-        img: "lala"
+        img: "lala",
+        username: "test",
     }
 ]
