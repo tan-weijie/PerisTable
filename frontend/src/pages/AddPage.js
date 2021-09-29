@@ -10,7 +10,7 @@ const AddPage = (props) => {
     const [purchaseDate, setPurchaseDate] = useState('');
     const [location, setLocation] = useState();
     const [price, setPrice] = useState();
-    const [img, setImg] = useState('No Image');
+    const [img, setImg] = useState('');
     const username = props.username;
 
     const uri = "http://localhost:5000/"
@@ -67,7 +67,7 @@ const AddPage = (props) => {
             setPurchaseDate('');
             setLocation('');
             setPrice('');
-            setImg('No Image')
+            setImg('')
             window.location = "../home";
         })
         .catch((error)=> {
@@ -78,7 +78,7 @@ const AddPage = (props) => {
     return (
         <div class="center">
             <form onSubmit={handleSubmit}>
-                <img src={img}/>
+                {img ? <img src={img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
                 <table>
                     <tr>    
                         <label>Image: </label>
@@ -90,7 +90,6 @@ const AddPage = (props) => {
                     </tr>
                     <tr>    
                         <label>Category: </label>
-                        {/* <input onChange={(e)=> setCategory(e.target.value)} value={category} type="select" placeholder="Category"/> */}
                         <select onChange={(e)=> setCategory(e.target.value)}>
                             <option value="Fruits">Fruits</option>
                             <option value="Vegetables">Vegetables</option>
