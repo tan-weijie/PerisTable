@@ -9,7 +9,10 @@
 node_modules
 /node_modules/
 /package-lock.json
+<<<<<<< HEAD
+=======
 .package-lock.json
+>>>>>>> ef64882d3f51195422e3bad33d9d606bc37ed532
 
 
 # testing
@@ -44,6 +47,7 @@ yarn-error.log*
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local

@@ -26,7 +26,7 @@ const EditPage = () => {
         console.log('useeffect')
     },[])
     
-    function getOne (){
+    function getOne() {
         axios.get((uri + `show/${id}`))
         .then(response =>{
             console.log('received data');
@@ -45,7 +45,8 @@ const EditPage = () => {
         })
     }
     
-    function editOne (){
+    function handleEdit(e) {
+        e.preventDefault();
         const data = {
             item,
             category,
@@ -56,19 +57,28 @@ const EditPage = () => {
             price,
             img,
         }
+        if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
+            alert("Please enter all fields")
+        } else if (isNaN(quantity)){
+            console.log(quantity)
+            alert("Quantity should be a number")
+        } else if (isNaN(price)) {
+            alert("Price should be a number")
+        }
         axios.put((uri + `edit/${id}`), data)
         .then(response =>{
             console.log('received editted data');
             console.log(response.data);
             // setData(response.data);
             console.log("THIS",data);
+            window.location = "../home";
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
         })
     }
 
-
+    console.log();
 
     return (
         <div class="center">
@@ -78,12 +88,18 @@ const EditPage = () => {
                         <img src="lala"/>
                     </tr>
                     <tr>    
-                        <label>Item Name: </label>
+                        <label>Item: </label>
                         <input onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
                     </tr>
                     <tr>    
                         <label>Category: </label>
-                        <input onChange={(e)=> setCategory(e.target.value)} value={category} type="select" placeholder="Category"/>
+                        <select onChange={(e)=> setCategory(e.target.value)} value={category}>
+                            <option value="Fruits">Fruits</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Others">Others</option>
+                        </select>
                     </tr>
                     <tr>    
                         <label>Quantity: </label>
@@ -91,11 +107,11 @@ const EditPage = () => {
                     </tr>
                     <tr>    
                         <label>Expiry Date: </label>
-                        <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate} type="date" placeholder="Expiry Date"/>
+                        <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate.split('T')[0]} type="date"/>
                     </tr>
                     <tr>    
                         <label>Purchase Date: </label>
-                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate} type="date" placeholder={purchaseDate}/>
+                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate.split('T')[0]} type="date"/>
                     </tr>
                     <tr>    
                         <label>Location: </label>
@@ -106,7 +122,8 @@ const EditPage = () => {
                         <input onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
                     </tr>
                 </table> 
-                <button onClick={editOne}>Edit</button>
+                <br/>
+                <a onClick={handleEdit}>Edit</a>
             </form>
         </div>
     )
