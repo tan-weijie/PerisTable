@@ -39,7 +39,7 @@ function App() {
         <UserContext.Provider value={{username, setUsername, email,setEmail}}>
             <BrowserRouter>
                 <div className="header">
-                    <img onClick={handleHome} src="./logo2.png" width="60px" height="50px" style={{float:"left"}}/>;
+                    <img onClick={handleHome} src="./logo2.png" width="60px" height="50px" style={{float:"left"}}/>
                     <h1>PerisTable</h1> 
                 </div>
                 <hr />
