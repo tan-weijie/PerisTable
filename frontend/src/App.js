@@ -11,6 +11,8 @@ import AddPage from './pages/AddPage';
 import EditPage from './pages/EditPage';
 import ShowPage from './pages/ShowPage';
 import axios from "axios"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function App() {
  

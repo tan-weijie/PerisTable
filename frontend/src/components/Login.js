@@ -1,6 +1,5 @@
 import {useState, useContext} from "react";
 import axios from 'axios';
-import UserContext from './UserContext'
 import {Link} from "react-router-dom"
 import styles from "./styles.css";
 
@@ -11,8 +10,7 @@ function Login(){
     const [loginError, setLoginError] = useState(false)
     const [msg, setMsg] = useState("")
 
-    const user = useContext(UserContext)
-
+    //sign new token with userinfo , send it with response
     function handleLogin(e){
         e.preventDefault();
         const data = {username,email,password};
@@ -25,9 +23,6 @@ function Login(){
                 return
             }
             
-            
-            user.setEmail(response.data.email)
-            user.setUsername(response.data.username)
             setUsername('')
             setEmail('');
             setPassword('')
@@ -66,7 +61,3 @@ function Login(){
 }
 
 export default Login;
-
-    //         {!loginError && (
-    // window.location.reload()
-    // )}
