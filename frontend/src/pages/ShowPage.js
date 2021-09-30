@@ -2,7 +2,7 @@ import React, {useState, useEffect, useHistory} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-const ShowPage = (props) => {
+const ShowPage = () => {
 
     const {id} = useParams();
 
@@ -13,7 +13,6 @@ const ShowPage = (props) => {
 
     useEffect(()=>{
         getOne();
-        console.log('useeffect')
     },[])
     
     function getOne (){
