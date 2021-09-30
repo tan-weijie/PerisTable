@@ -2,6 +2,7 @@ import {useState, useContext} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom"
 import styles from "./styles.css";
+import UserContext from "./UserContext";
 
 function Login(){
     const [username, setUsername] = useState("")
@@ -10,12 +11,16 @@ function Login(){
     const [loginError, setLoginError] = useState(false)
     const [msg, setMsg] = useState("")
 
+    const user = useContext(UserContext);
+
     //sign new token with userinfo , send it with response
     function handleLogin(e){
         e.preventDefault();
         const data = {username,email,password};
         axios.post('http://localhost:5000/login',data,{withCredentials:true})
         .then(response =>{
+            user.setUsername(response.data.username);
+            user.setEmail(response.data.email);
             console.log('response login',response)
             if (response.data==='issue' || response.data==="err"){
                 const msg = (<div> Invalid Login</div>)

@@ -9,7 +9,7 @@ function Register(){
     const [password, setPassword] = useState("")
     const [msg, setMsg] = useState("")
 
-    //const user = useContext(UserContext)
+    const user = useContext(UserContext)
  
     function handleRegister(e){
         e.preventDefault();
@@ -17,7 +17,7 @@ function Register(){
         axios.post('http://localhost:5000/signup',data,{withCredentials:true})
         .then(response =>{
             console.log("empty",response.data)
-
+            
             if (response.data.errorMessage === "Please enter all required fields."){
                 const msg = (<div> Please enter all required fields.</div>)
                 setMsg(msg)
@@ -29,8 +29,8 @@ function Register(){
                 return
             }
 
-            //user.setUsername(response.data.username)
-            //user.setEmail(response.data.email)
+            user.setUsername(response.data.username)
+            user.setEmail(response.data.email)
             setUsername('')
             setEmail('');
             setPassword('')
