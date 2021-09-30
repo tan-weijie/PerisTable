@@ -30,7 +30,10 @@ function App() {
     },[])
 
     const handleHome = () => {
-        window.location = "./home";
+        if (username == ""){
+            window.location = "/login"
+        } else 
+            window.location = "./home";
     }
 
     return (

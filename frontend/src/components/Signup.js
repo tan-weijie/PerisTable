@@ -26,7 +26,9 @@ function Register(){
 
     return(
         <div className="mt-4">
-            <h2>Create New Account </h2>
+            <div className="text-center mt-6 bg-dark text-white rounded-pill w-50">
+                <h4>Create New Account </h4>
+            </div>
             <form action="" onSubmit={e=>{handleRegister(e)}}>
                 <div className="form-floating mb-2">
                     <input className="form-control w-50" id="floatingName" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/>
