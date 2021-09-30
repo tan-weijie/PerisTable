@@ -21,28 +21,20 @@ const Navbar = (props) => {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
             <div className="container-fluid">
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav mb-sm-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/home">Home</Link>
+                            <Link className="nav-link text-white" to="/home">{email && (<div>Hi, <b>{username} </b></div>)}</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/add">Add Item</Link>
+                            <Link className="nav-link text-white" to="/add">Add Item</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/shoppinglist">Shopping List</Link>
+                            <a className="nav-link disable">Shopping List</a>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/home">{email && (<div>Hi, <b>{username} </b></div>)}</Link>
-                        </li>
-                        <li className="nav-item">
-                            <div className="nav-link mx" id="logout" onClick={()=> handleLogout()} >Log out</div> 
+                            <div className="nav-link text-white" id="logout" onClick={()=> handleLogout()} >Log out</div> 
                         </li>
                     </ul>
-                </div>
             </div>
         </nav>
     )

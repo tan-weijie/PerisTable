@@ -25,13 +25,24 @@ function Register(){
     }
 
     return(
-        <div>
+        <div className="mt-4">
             <h2>Create New Account </h2>
-            <form className="signup" action="" onSubmit={e=>{handleRegister(e)}}>
-                <input className="input" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/><br/>
-                <input className="input" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/><br/>
-                <input className="input" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
-                <button className="button" type="submit">Sign up</button>
+            <form action="" onSubmit={e=>{handleRegister(e)}}>
+                <div className="form-floating mb-2">
+                    <input className="form-control w-50" id="floatingName" type="username" placeholder="username" value={username} onChange={e=>setUsername(e.target.value)}/>
+                    <label for="floatingName">Username</label>
+                </div>
+                <div className="form-floating mb-2">
+                    <input className="form-control w-50" id="floatingEmail" type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)}/>
+                    <label for="floatingEmail">Email Address</label>
+                </div>
+                <div className="form-floating mb-2">
+                    <input className="form-control w-50" id="floatingPassword" type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div className="form-floating mb-4">
+                    <button className="btn btn-dark text-white" type="submit">Create Account</button>
+                </div>
             </form>
         </div>
     )
