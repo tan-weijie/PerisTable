@@ -41,21 +41,22 @@ const DashboardPage = (props) => { //props or useContext;
 
     return (
         <div class="center">
-            <div style={{textAlign: "left"}}>
-                <p>Total Items: {data.length}</p>
-                {/* <p>Expiring in 5 days: </p> */}
+            <div className="center mt-4">
+                <h5>You have <span className="badge bg-secondary">{data.length}</span> perishable items!</h5>
             </div>
             <br/>
-            <table className="table table-bordered">
-                <tr>
-                    <th>#</th>
-                    <th>Category</th>
-                    <th>Item</th>
-                    <th>Expiry Date</th>
-                    <th>Location</th>
-                    <th>Edit</th>
-                    <th>Remove</th>
-                </tr>
+            <table className="table table-striped table-borderless table-hover">
+                <thead>
+                    <tr className="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Expiry Date</th>
+                        <th scope="col">Location</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
                 {data.map((element, index) => {
                     let color;
                     let newDate = new Date;
@@ -69,16 +70,18 @@ const DashboardPage = (props) => { //props or useContext;
                         color = "yellow"
                     }
                     return (
-                        <tr id={element._id}>
-                                <td>{index + 1}</td>
-                                <td><Link to={`/show/${element._id}`}>{element.category}</Link></td>
+                        <tbody>
+                            <tr id={element._id}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{element.category}</td>
                                 <td><Link to={`/show/${element._id}`}>{element.item}</Link></td>
                                 <td style={{backgroundColor: color}}><Link to={`/show/${element._id}`}>{eDate.toLocaleDateString('en-AU')}</Link></td>
-                                <td><Link to={`/show/${element._id}`}>{element.location}</Link></td>
-                            <td><Link to={`/edit/${element._id}`}><i className="bi bi-pencil-square text-dark" id={element._id}></i></Link></td>
-                            <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
-                            <br/>
-                        </tr>
+                                <td>{element.location}</td>
+                                <td><Link to={`/edit/${element._id}`}><i className="bi bi-pencil-square text-dark" id={element._id}></i></Link></td>
+                                <td><i className="bi bi-trash text-dark" href="/home" id={element._id} onClick={handleDelete}></i></td>
+                                <br/>
+                            </tr>
+                        </tbody>
                     )
                 })}
             </table>
