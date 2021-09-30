@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-// import "./DashboardPage.css";
+import Alert from 'react-bootstrap/Alert';
 
 const AddPage = (props) => {
     const [item, setItem] = useState();
@@ -11,6 +11,7 @@ const AddPage = (props) => {
     const [location, setLocation] = useState();
     const [price, setPrice] = useState();
     const [img, setImg] = useState('');
+    const [prompt, setPrompt] = useState('');
     const username = props.username;
 
     const uri = "http://localhost:5000/"
@@ -49,12 +50,24 @@ const AddPage = (props) => {
             username,
         };
         if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
-            alert("Please enter all fields")
+            setPrompt(
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Please enter all fields!</Alert.Heading>
+                </Alert>
+                )
         } else if (isNaN(quantity)){
             console.log(quantity)
-            alert("Quantity should be a number")
+            setPrompt(                
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Quantity should be a number!</Alert.Heading>
+                </Alert>
+                )
         } else if (isNaN(price)) {
-            alert("Price should be a number")
+            setPrompt(                
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Price should be a number!</Alert.Heading>
+                </Alert>
+                )
         }
         console.log(typeof(expiryDate))
         axios.post((uri + "add"),data)
@@ -77,7 +90,7 @@ const AddPage = (props) => {
 
     return (
         <div className="center mt-4">
-            <form onSubmit={handleSubmit}>                    
+            <form onSubmit={handleSubmit}>                   
                     <div className="form-floating mt-2 mb-2">    
                         <input className="form-control w-70" id="inputItem" onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
                         <label for="inputItem">Item Name</label>
@@ -117,9 +130,10 @@ const AddPage = (props) => {
                     <div className="input-group mt-2 mb-7">    
                         <input className="form-control" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
                     </div>
-                    {img ? <img className="mt-2" src={img}/> : <img className="mt-2" src="https://via.placeholder.com/400x250.png?text=No+Image+Selected"/>}
-
+                    {img ? <img className="mt-2 mb-7" src={img}/> : <img className="mt-2" src="https://via.placeholder.com/400x250.png?text=No+Image+Selected"/>}
                 <br/>
+                <br/>
+                {prompt} 
                 <button className="btn btn-dark text-white mt-4" onClick={handleSubmit} href="./home" >Add Item</button>
             </form>
         </div>

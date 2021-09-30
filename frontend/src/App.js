@@ -2,7 +2,6 @@ import React, {useState,useEffect} from "react";
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Home from "./components/Home"
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import UserContext from './components/UserContext'
@@ -30,7 +29,10 @@ function App() {
     },[])
 
     const handleHome = () => {
-        window.location = "./home";
+        if (username == ""){
+            window.location = "/login"
+        } else 
+            window.location = "./home";
     }
 
     return (
@@ -45,13 +47,9 @@ function App() {
                 </div>
                 <main>
                     <Switch>
-                        <Route exact path={'/'}>
-                            <Home />
-                        </Route>
+                        <Route exact path={'/'} component={Login} />
                         <Route exact path={'/login'} component={Login} />          
-                        <Route exact path={'/signup'}>
-                            <Signup />
-                        </Route>
+                        <Route exact path={'/signup'} component={Signup} />
                         <Route path="/home">
                             <Navbar setEmail={setEmail} setUsername={setUsername} email={email} username={username}></Navbar>
                             <DashboardPage username={username}/>
@@ -70,6 +68,9 @@ function App() {
                         </Route>
                     </Switch>           
                 </main>
+                <footer className="d-flex flex-row mt-3">
+                    <p>Reduce your carbon footprint today by not wasting food!</p>        
+                </footer>
             </BrowserRouter>
         </UserContext.Provider>
       </div>
