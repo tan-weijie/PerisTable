@@ -13,12 +13,10 @@ const DashboardPage = (props) => { //props or useContext;
     
     function getData (){
    
-        // console.log('THIS',username);
         axios.get((uri + `home/${props.username}`))
         .then(response =>{
             console.log('received data');
             setData(response.data);
-            // console.log(response);
             console.log('data',data);
         })
         .catch((error)=> {
@@ -31,7 +29,7 @@ const DashboardPage = (props) => { //props or useContext;
         .then(response => {
             console.log('deleted one item');
             console.log('data',data);
-            window.location = "./home";
+            window.location = ("../home");
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})

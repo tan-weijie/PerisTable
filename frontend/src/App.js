@@ -42,7 +42,7 @@ function App() {
         <UserContext.Provider value={{username, setUsername, email,setEmail}}>
             <BrowserRouter>
                 <div className="d-flex flex-row mb-3">
-                    {username ? <Link to="/home"><img src="./groceries.png" width="60px" height="50px" className="me-3"/></Link> : <Link to="/login"><img src="./groceries.png" width="60px" height="50px" className="me-3"/></Link>} 
+                    {username ? <Link to="/home"><img src="./groceries.png" width="60px" height="50px" className="me-3"/></Link> : <Link to="/login"><img src="./groceries.png" width="60px" height="50px" className="me-3"/></Link>}
                     <h1>PerisTable</h1>        
                 </div>
                 <main>
