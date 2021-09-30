@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useHistory} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import "./DashboardPage.css";
 
 const ShowPage = (props) => {
 
@@ -45,43 +44,38 @@ const ShowPage = (props) => {
     let pDate = new Date(data.purchaseDate);
 
     return (
-        <div class="center">
-            <form>
-                <table>
-                    <img src="lala"/>
-                    <tr>    
-                        <label>Item Name: </label>
-                        {data.item}
-                    </tr>
-                    <tr>    
-                        <label>Category: </label>
-                        {data.category}
-                    </tr>
-                    <tr>    
-                        <label>Quantity: </label>
-                        {data.quantity}
-                    </tr>
-                    <tr>    
-                        <label>Expiry Date: </label>
-                        {eDate.toLocaleDateString('en-AU')}
-                    </tr>
-                    <tr>    
-                        <label>Purchase Date: </label>
-                        {pDate.toLocaleDateString('en-AU')}
-                    </tr>
-                    <tr>    
-                        <label>Location: </label>
-                        {data.location}
-                    </tr>
-                    <tr>    
-                        <label>Price: </label>
-                        ${data.price}
-                    </tr>
-                </table>
-                <br/> 
-                <a href={`../edit/${data._id}`} id={data._id}>Edit</a>
-                <a onClick={handleDelete} id={data._id}>Remove</a>
-            </form>
+        <div className="container">
+            <div className="row mt-4">
+                <div className="col-6 col-md-4">
+                    {data.img ? <img src={data.img} className="card-img-top"/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
+                </div>    
+                <div className="col-md-8">  
+                    <div>
+                        <h3>{data.item}</h3>
+                    </div> 
+                    <div>    
+                        <h6>{data.category}</h6>
+                    </div> 
+                    <div>    
+                        <p>Quantity: {data.quantity}</p>
+                    </div>
+                    <div>    
+                        <p>Bought on {pDate.toLocaleDateString('en-AU')} for ${data.price}</p>
+                    </div>
+                    <div>    
+                        <p>Expiring on {eDate.toLocaleDateString('en-AU')}</p>
+                    </div>
+                    <div>    
+                        <p>Currently store in {data.location}</p>
+                    </div>
+                    <div>    
+                        <p>Price: ${data.price}</p>
+                    </div>
+                    <Link to={`../edit/${data._id}`} className="btn btn-dark me-2" id={data._id}>Edit</Link>
+                    <a className="btn btn-dark" onClick={handleDelete} id={data._id}>Remove</a>
+                </div>
+            </div>
+
         </div>
     )
 }

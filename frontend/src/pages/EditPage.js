@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import "./DashboardPage.css"
+// import "./DashboardPage.css"
 
 const EditPage = () => {
     const [item, setItem] = useState();
@@ -20,6 +20,25 @@ const EditPage = () => {
 
     console.log(id);
 
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        console.log(base64);
+        setImg(base64);
+    };
 
     useEffect(()=>{
         getOne();
@@ -38,6 +57,7 @@ const EditPage = () => {
             setPurchaseDate(response.data.purchaseDate);
             setLocation(response.data.location);
             setPrice(response.data.price);
+            setImg(response.data.img);
             console.log("THIS",data);
         })
         .catch((error)=> {
@@ -81,49 +101,47 @@ const EditPage = () => {
     console.log();
 
     return (
-        <div class="center">
+        <div className="center mt-4">
             <form>
-                <table>
-                    <tr>    
-                        <img src="lala"/>
-                    </tr>
-                    <tr>    
-                        <label>Item: </label>
-                        <input onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
-                    </tr>
-                    <tr>    
-                        <label>Category: </label>
-                        <select onChange={(e)=> setCategory(e.target.value)} value={category}>
-                            <option value="Fruits">Fruits</option>
-                            <option value="Vegetables">Vegetables</option>
-                            <option value="Meat">Meat</option>
-                            <option value="Dairy">Dairy</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </tr>
-                    <tr>    
-                        <label>Quantity: </label>
-                        <input onChange={(e)=> setQuantity(e.target.value)} value={quantity} type="text" placeholder="Quantity"/>
-                    </tr>
-                    <tr>    
-                        <label>Expiry Date: </label>
-                        <input onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate.split('T')[0]} type="date"/>
-                    </tr>
-                    <tr>    
-                        <label>Purchase Date: </label>
-                        <input onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate.split('T')[0]} type="date"/>
-                    </tr>
-                    <tr>    
-                        <label>Location: </label>
-                        <input onChange={(e)=> setLocation(e.target.value)} value={location} type="text" placeholder="Location"/>
-                    </tr>
-                    <tr>    
-                        <label>Price: </label>
-                        <input onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
-                    </tr>
-                </table> 
-                <br/>
-                <a onClick={handleEdit}>Edit</a>
+                {img ? <img src={img}/> : <img src="https://via.placeholder.com/200x250.png?text=No+Image+Selected"/>}
+                <div className="input-group mt-2 mb-7">    
+                    <input className="form-control w-70" id="fileUpload" onChange={handleImage} type="file" placeholder="Image" accept=".jpeg, .png, .jpg"/>
+                </div>
+                <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changeItem" onChange={(e)=> setItem(e.target.value)} value={item} type="text" placeholder="Item"/>
+                    <label for="changeItem">Item Name</label>
+                </div>
+                <div className="form-floating mt-2 mb-2">    
+                    <select className="form-select" id="changeSelect" onChange={(e)=> setCategory(e.target.value)} value={category}>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Meat">Meat</option>
+                        <option value="Dairy">Dairy</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <label for="changeSelect">Category</label>
+               </div>
+               <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changeQty" onChange={(e)=> setQuantity(e.target.value)} value={quantity} type="text" placeholder="Quantity"/>
+                    <label for="changeQty">Quantity</label>
+               </div>
+               <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changeExpiryDate" onChange={(e)=> setExpiryDate(e.target.value)} value={expiryDate.split('T')[0]} type="date"/>
+                    <label for="changeExpiryDate">Expiry Date</label>
+                </div>
+                <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changePurchaseDate" onChange={(e)=> setPurchaseDate(e.target.value)} value={purchaseDate.split('T')[0]} type="date"/>
+                    <label for="changePurchaseDate">Purchase Date</label>
+               </div>
+                <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changeLocation" onChange={(e)=> setLocation(e.target.value)} value={location} type="text" placeholder="Location"/>
+                    <label for="changeLocation">Location</label>
+                </div>
+                <div className="form-floating mt-2 mb-2">    
+                    <input className="form-control w-70" id="changePrice" onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
+                    <label for="changePrice">Price</label>
+                </div>
+                <button className="btn btn-dark text-white mb-2" onClick={handleEdit}>Submit Update</button>
             </form>
         </div>
     )
