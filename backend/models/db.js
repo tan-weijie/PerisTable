@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
+require('dotenv').config()
 
-const db = "mongodb+srv://grocerytracker:grocerytracker123@cluster0.h3idv.mongodb.net/Peristable?retryWrites=true&w=majority";
-
+const db = process.env.MONGODBURI
 const connectDB = async () => {
     try {
         await mongoose.connect(db, {
@@ -13,4 +13,5 @@ const connectDB = async () => {
         process.exit(1); // 1 with issue, 0 without
     }
 };
+
 module.exports = connectDB;
