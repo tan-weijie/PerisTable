@@ -30,8 +30,9 @@ const DashboardPage = (props) => { //props or useContext;
         axios.delete((uri + `delete/${e.target.id}`))
         .then(response => {
             console.log('deleted one item');
-            setData(response.data);
+            // setData(response.data);
             console.log('data',data);
+            window.location = ("../home");
         })
         .catch((error)=> {
             console.log({status: 'bad', msg: error.message})
