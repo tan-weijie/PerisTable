@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-// import "./Navbar.css"
 import UserContext from './UserContext';
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Navbar = (props) => {
     const email = props.email;
