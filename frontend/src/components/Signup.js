@@ -2,6 +2,7 @@ import {useState, useContext} from "react";
 import axios from 'axios';
 import UserContext from './UserContext'
 import {Link} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Register(){
     const [username, setUsername] = useState("")
@@ -19,12 +20,20 @@ function Register(){
             console.log("empty",response.data)
             
             if (response.data.errorMessage === "Please enter all required fields."){
-                const msg = (<div> Please enter all required fields.</div>)
+                const msg = (
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Please enter all required fields.</strong>
+                    </div>
+                    )
                 setMsg(msg)
                 return
             }
             if (response.data.errorMessage === "Existing user."){
-                const msg = (<div> Existing user.</div>)
+                const msg = (
+                    <div class="alert alert-danger" role="alert">
+                        <strong>There is an existing user.</strong>
+                    </div>
+                    )
                 setMsg(msg)
                 return
             }
@@ -41,7 +50,9 @@ function Register(){
 
     return(
         <div className="mt-4">
-            <h2>Create New Account </h2>
+            <div className="text-center mt-6 bg-dark text-white rounded-pill w-50">
+                <h4>Create New Account </h4>
+            </div>
             <form action="" onSubmit={e=>{handleRegister(e)}}>
                 {msg}
                 <div className="form-floating mb-2">

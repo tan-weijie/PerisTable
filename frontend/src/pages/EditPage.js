@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-// import "./DashboardPage.css"
+import Alert from 'react-bootstrap/Alert';
 
 const EditPage = () => {
     const [item, setItem] = useState();
@@ -12,6 +12,7 @@ const EditPage = () => {
     const [location, setLocation] = useState();
     const [price, setPrice] = useState();
     const [img, setImg] = useState('lala');
+    const [prompt, setPrompt] = useState('');
 
     const {id} = useParams();
 
@@ -78,12 +79,24 @@ const EditPage = () => {
             img,
         }
         if (!(item && category && quantity && expiryDate && purchaseDate && location && price)){
-            alert("Please enter all fields")
+            setPrompt(
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Please enter all fields!</Alert.Heading>
+                </Alert>
+                )
         } else if (isNaN(quantity)){
             console.log(quantity)
-            alert("Quantity should be a number")
+            setPrompt(                
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Quantity should be a number!</Alert.Heading>
+                </Alert>
+                )
         } else if (isNaN(price)) {
-            alert("Price should be a number")
+            setPrompt(                
+                <Alert variant="danger" onClose={() => setPrompt(false)} dismissible>
+                    <Alert.Heading>Price should be a number!</Alert.Heading>
+                </Alert>
+                )
         }
         axios.put((uri + `edit/${id}`), data)
         .then(response =>{
@@ -141,6 +154,7 @@ const EditPage = () => {
                     <input className="form-control w-70" id="changePrice" onChange={(e)=> setPrice(e.target.value)} value={price} type="text" placeholder="Price"/>
                     <label for="changePrice">Price</label>
                 </div>
+                {prompt}
                 <button className="btn btn-dark text-white mb-2" onClick={handleEdit}>Submit Update</button>
             </form>
         </div>
